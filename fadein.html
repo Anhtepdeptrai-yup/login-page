@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fade In on Scroll</title>
+    <style>
+        .fade-in {
+            opacity: 0;
+            transition: opacity 2s ease-in;
+        }
+
+        .visible {
+            opacity: 1;
+        }
+
+        /* Just for styling the example */
+        .content {
+            margin: 100px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">Scroll down to see the effect.</div>
+    <div class="fade-in">This content will fade in when you scroll to it.</div>
+    <div class="content">More content below.</div>
+
+    <script>
+        const fadeInElements = document.querySelectorAll('.fade-in');
+
+        function checkVisibility() {
+            fadeInElements.forEach(element => {
+                const rect = element.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom >= 0) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', checkVisibility);
+        window.addEventListener('load', checkVisibility); // Initial check on load
+    </script>
+</body>
+</html>
